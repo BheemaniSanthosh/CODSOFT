@@ -1,64 +1,31 @@
 import random
 
-def play_round(user_choice):
-    
+while True:
+    user = input("Enter your choice (rock, paper, scissors): ").lower()
+    computer_selection = random.choice(["rock", "paper", "scissors"])
 
-    choices = ["rock", "paper", "scissors"]
-    computer_choice = random.choice(choices)
+    print(f"You chose {user}, computer chose {computer_selection}")
 
-  
-    if user_choice == computer_choice:
-        winner = "Tie"
-    elif (user_choice == "rock" and computer_choice == "scissors") or \
-         (user_choice == "paper" and computer_choice == "rock") or \
-         (user_choice == "scissors" and computer_choice == "paper"):
-        winner = "User"
-    else:
-        winner = "Computer"
-
-    return user_choice, computer_choice, winner
-
-def main():
-    # Track user and computer scores
-    user_score = 0
-    computer_score = 0
-
-    while True:
-       
-        print("Welcome to Rock-Paper-Scissors!")
-        print("Choose rock, paper, or scissors (or 'q' to quit): ")
-        user_choice = input().lower()
-
-        if user_choice == 'q':
-            break
-        elif user_choice not in ["rock", "paper", "scissors"]:
-            print("Invalid choice. Please try again.")
-            continue
-
-      
-        user_choice, computer_choice, winner = play_round(user_choice)
-
-    
-        print(f"You chose {user_choice}, computer chose {computer_choice}.")
-        if winner == "Tie":
-            print("It's a tie!")
+    if user == computer_selection:
+        print(f"Both players selected {user}. It's a tie!")
+    elif user == "rock":
+        if computer_selection == "scissors":
+            print("Rock smashes scissors! You win!")
         else:
-            if winner == "User":
-                print("You win!")
-                user_score += 1
-            else:
-                print(f"You lose. {computer_choice} beats {user_choice}.")
-                computer_score += 1
+            print("Paper covers rock! You lose.")
+    elif user == "paper":
+        if computer_selection == "rock":
+            print("Paper covers rock! You win!")
+        else:
+            print("Scissors cuts paper! You lose.")
+    elif user == "scissors":
+        if computer_selection == "paper":
+            print("Scissors cuts paper! You win!")
+        else:
+            print("Rock smashes scissors! You lose.")
+    else:
+        print("Invalid input. Please enter rock, paper, or scissors.")
 
-           
-            print(f"Current score: User - {user_score}, Computer - {computer_score}")
-
-     
-        play_again = input("Do you want to play again? (y/n): ").lower()
-        if play_again != 'y':
-            break
-
-    print(f"Thanks for playing! Final score: User - {user_score}, Computer - {computer_score}")
-
-if __name__ == "__main__":
-    main()
+    play_again = input("Do you want to play again? (yes/no): ").lower()
+    if play_again != "yes":
+        break
